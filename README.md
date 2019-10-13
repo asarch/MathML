@@ -1,23 +1,23 @@
 # MathML
 Steps to use MathML with DocBook
 
-# Preamble
+## Preamble
 
 From
 
 https://tdg.docbook.org/tdg/5.2/ch02.html
 
 3.7.4. Mathematics
-
+ 
 DocBook does not define a complete set of elements for representing equations. The Mathematical Markup Language (MathML) [MathML] is a standard that defines a comprehensive grammar for representing equations. MathML markup may be used in any of the equation elements (equation,informalequation, and inlineequation). For simple mathematics equations that do not require extensive markup, the mathphrase element is an alternative.
-
+ 
 [MathML] David Carlisle, et al., ed. Mathematical Markup Language (MathML) Version 2.0. Second Edition, World Wide Web Consortium, 2003-10-21, http://www.w3.org/TR/MathML/.
 
-# Installing and setting Xalan
+## Installing and setting Xalan
 
-This procedure is for OpenBSD
+This procedure is for **OpenBSD**.
 
-Install the Xalan package:
+Install the **Xalan** package:
 
 ```Bash
 # pkg_add -iv xalan-j
@@ -79,7 +79,8 @@ version.xalan2x=Xalan Java 2.7.2
 #----- END writeEnvironmentReport: Useful properties found: -----
 # YAHOO! Your environment seems to be OK.
 ```
-# Installing and configuring FOP
+
+## Installing and configuring FOP
 
 Get the FOP formatter object from:
 
@@ -88,3 +89,26 @@ https://xmlgraphics.apache.org/fop/
 and the jEuclide plugin from:
 
 http://jeuclid.sourceforge.net/
+
+Uncompress the package to:
+
+```Bash
+$ tar vxzf fop-2.3-bin.tar.gz -C ~/bin
+```
+
+Uncompress the package of the jEuclid plugin and copy the jar's files to the fop's /lib dir:
+
+```
+$ unzip jeuclid-3.1.9-distribution.zip
+Archive:  ../jeuclid-3.1.9-distribution.zip          
+   creating: jeuclid-3.1.9/                                        
+   creating: jeuclid-3.1.9/bin/                                    
+  inflating: jeuclid-3.1.9/bin/mml2xxx                
+  inflating: jeuclid-3.1.9/bin/foprep                             
+  inflating: jeuclid-3.1.9/bin/mathviewer                     
+  inflating: jeuclid-3.1.9/bin/listfonts                         
+   creating: jeuclid-3.1.9/repo/                                   
+  inflating: jeuclid-3.1.9/repo/jeuclid-core-3.1.9.jar        
+  inflating: jeuclid-3.1.9/repo/commons-logging-1.1.1.jar
+  ....
+  ```
