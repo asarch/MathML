@@ -110,5 +110,14 @@ Archive:  ../jeuclid-3.1.9-distribution.zip
    creating: jeuclid-3.1.9/repo/                                   
   inflating: jeuclid-3.1.9/repo/jeuclid-core-3.1.9.jar        
   inflating: jeuclid-3.1.9/repo/commons-logging-1.1.1.jar
-  ....
+  ...
+  
+  cp jeuclid-3.1.9/repo/* ~/bin/fop-2.3/fop/lib/
   ```
+Enable the plugin:
+
+```Bash
+$ vi ~/.foprc
+# From http://malatsblog.blogspot.com/2010/01/generating-pdf-from-docbook-on-linux.html
+find_jars jeuclid-core jeuclid-fop
+```
