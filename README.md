@@ -15,9 +15,9 @@ DocBook does not define a complete set of elements for representing equations. T
 
 ## Installing and setting Xalan
 
-This procedure is for **OpenBSD**.
+This procedure is for OpenBSD.
 
-Install the **Xalan** package:
+Install the Xalan package:
 
 ```Bash
 # pkg_add -iv xalan-j
@@ -35,7 +35,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=$CLASSPATH:/usr/local/share/java/classes/xalan-j/serializer.jar:/usr/local/share/java/classes/xalan-j/xalan.jar:/usr/local/share/java/classes/xalan-j/xercesImpl.jar:/usr/local/share/java/classes/xalan-j/xml-apis.jar:~/lib/docbook/extensions/xalan27.jar:~/bin/xslthl-2.1.3/xslthl-2.1.3.jar
 ```
 
-You can check the contents of the xalan-j package with:
+You can check the contents of the **xalan-j** package with:
 
 ```Bash
 $ pkg_info -L xalan-j
@@ -86,7 +86,7 @@ Get the FOP formatter object from:
 
 https://xmlgraphics.apache.org/fop/
 
-and the jEuclide plugin from:
+and the jEuclid plugin from:
 
 http://jeuclid.sourceforge.net/
 
@@ -96,19 +96,19 @@ Uncompress the package to:
 $ tar vxzf fop-2.3-bin.tar.gz -C ~/bin
 ```
 
-Uncompress the package of the jEuclid plugin and copy the jar's files to the fop's /lib dir:
+Uncompress the package of the jEuclid plugin and copy the jar's files to the fop's **/lib** dir:
 
 ```
 $ unzip jeuclid-3.1.9-distribution.zip
-Archive:  ../jeuclid-3.1.9-distribution.zip          
-   creating: jeuclid-3.1.9/                                        
-   creating: jeuclid-3.1.9/bin/                                    
-  inflating: jeuclid-3.1.9/bin/mml2xxx                
-  inflating: jeuclid-3.1.9/bin/foprep                             
-  inflating: jeuclid-3.1.9/bin/mathviewer                     
-  inflating: jeuclid-3.1.9/bin/listfonts                         
-   creating: jeuclid-3.1.9/repo/                                   
-  inflating: jeuclid-3.1.9/repo/jeuclid-core-3.1.9.jar        
+Archive:  ../jeuclid-3.1.9-distribution.zip
+   creating: jeuclid-3.1.9/
+   creating: jeuclid-3.1.9/bin/
+  inflating: jeuclid-3.1.9/bin/mml2xxx
+  inflating: jeuclid-3.1.9/bin/foprep
+  inflating: jeuclid-3.1.9/bin/mathviewer
+  inflating: jeuclid-3.1.9/bin/listfonts
+   creating: jeuclid-3.1.9/repo/             
+  inflating: jeuclid-3.1.9/repo/jeuclid-core-3.1.9.jar
   inflating: jeuclid-3.1.9/repo/commons-logging-1.1.1.jar
   ...
   
@@ -120,4 +120,27 @@ Enable the plugin:
 $ vi ~/.foprc
 # From http://malatsblog.blogspot.com/2010/01/generating-pdf-from-docbook-on-linux.html
 find_jars jeuclid-core jeuclid-fop
+```
+
+## Transformations
+
+There are two ways to do it:
+
+Using Xalan:
+
+```Bash
+$ java org.apache.xalan.xslt.Process -in equations.xml -out equations.fo -xsl ~/lib/docbook/fo/docbook.xsl
+```
+
+or with xsltproc:
+
+```Bash
+$ xsltproc ~/lib/docbook/fo/docbook.xsl equations.xml > equations.fo
+```
+## Getting the PDF file
+
+And now render the file into PDF:
+
+```Bash
+$ ~/bin/fop-2.3/fop/fop -fo equations.fo -pdf equations.pdf
 ```
