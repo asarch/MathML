@@ -129,7 +129,7 @@ There are two ways to do it:
 Using Xalan:
 
 ```Bash
-$ java org.apache.xalan.xslt.Process -in equations.xml -out equations.fo -xsl ~/lib/docbook/fo/docbook.xsl
+$ java org.apache.xalan.xslt.Process -in equations.xml -out equations.fo -xsl ~/lib/docbook/fo/docbook.xsl -param use.extensions 1
 ```
 
 or with xsltproc:
@@ -143,4 +143,54 @@ And now render the file into PDF:
 
 ```Bash
 $ ~/bin/fop-2.3/fop/fop -fo equations.fo -pdf equations.pdf
+```
+
+## Resources
+
+For more information
+
+- http://www.w3.org/TR/MathML/
+- https://developer.mozilla.org/en-US/docs/Web/MathML
+- https://developer.mozilla.org/en-US/docs/Mozilla/MathML_Project
+
+# Extra
+
+Enabling syntax hightlighting in DocBook document
+
+From:
+
+```Bash
+$ cat ~/lib/docbook/highlighting/README                                                                                           
+To use the syntax higlighting extension with DocBook-XSL 1.74.3+, you must:
+1. Use a processor that works with the extension: Saxon 6 or Xalan-J.
+2. Add the latest version of xslthl-2.X.X.jar to your classpath.
+3. Set the highlight.source parameter to 1.
+4. Import into your customization one of the following stylesheet module:
+  * html/highlight.xsl
+  * xhtml/highlight.xsl
+  * xhtml-1_1/highlight.xsl
+  * fo/highlight.xsl
+5. Use that customiztion layer.
+
+Note: Saxon 8.5 or later is also supported, but since it is an XSLT 2.0
+processor it is not guaranteed to work with DocBook-XSL in all
+circumstances. 
+```
+
+Get the jar file from:
+
+https://sourceforge.net/projects/xslthl/
+
+and uncompress it:
+
+```Bash
+$ cd ~/bin
+
+$ unzip ~/Downloads/xslthl-2.1.3-dist.zip
+```
+
+add its path to your **CLASSPATH**:
+
+```Bash
+$ export CLASSPATH=$CLASSPATH:~/bin/xslthl-2.1.3/xslthl-2.1.3.jar
 ```
