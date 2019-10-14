@@ -111,9 +111,9 @@ Archive:  ../jeuclid-3.1.9-distribution.zip
   inflating: jeuclid-3.1.9/repo/jeuclid-core-3.1.9.jar
   inflating: jeuclid-3.1.9/repo/commons-logging-1.1.1.jar
   ...
-  
-  cp jeuclid-3.1.9/repo/* ~/bin/fop-2.3/fop/lib/
-  ```
+
+$ cp jeuclid-3.1.9/repo/* ~/bin/fop-2.3/fop/lib/
+```
 Enable the plugin:
 
 ```Bash
